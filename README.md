@@ -1,3 +1,6 @@
+## The Latin Subsets
+The Latin variants were generated from the original korean/english font, using a rather incoherent Claude Opus 4.7, and the build_latin.py script it wrote. It could do with a proper inspection, but everything seems to work right, in use. The latin fonts were intended to have a smaller filesize, and they do, 137KB, relative to 4.3MB, and they were intended to be vertically centered on the line, which is apparently not quite possible for korean fonts, and they do now appear to be centered.
+
 # Dongle Project
 
 ![Dongle_Image1](Documentation/Dongle_Image1.jpg)
