@@ -1,25 +1,10 @@
-## The Latin Subsets
-The Latin variants were generated from the original korean/english font, using a rather incoherent Claude Opus 4.7, and the build_latin.py script it wrote. It could do with a proper inspection, but everything seems to work right, in use. The latin fonts were intended to have a smaller filesize, and they do, 137KB, relative to 4.3MB, and they were intended to be vertically centered on the line, which is apparently not quite possible for korean fonts, and they do now appear to be centered.
+## Dongle Latin
 
-# Dongle Project
+[Dongle(동글)](https://github.com/yangheeryu/Dongle) is a korean font, but it happens to contain a really good latin font as well. It turns out that korean fonts can't be centered on the line in the way that many programs will expect latin fonts to be, so latin users will have issues with that. So here is Dongle Latin. It strips out the korean characters, which reduces file size from 4.3 MB to 137KB, and it vertically recenters it. This conversion was performed using a rather incoherent Claude Opus 4.7, and the build_latin.py script it wrote. It could do with a proper inspection, but everything seems to work right.
 
-![Dongle_Image1](Documentation/Dongle_Image1.jpg)
-![Dongle_Image2](Documentation/Dongle_Image2.jpg)
+> Dongle(동글) is a rounded sans-serif typeface for display. It is a modular Hangeul with the de-square frame, creating a playful and rhythmic movement. The name, Dongle(동글) comes from a Korean onomatopoeia, meaning 'rounded or curved shape(with adorable impression)’. 
 
-
-Dongle(동글) is a rounded sans-serif typeface for display. It is a modular Hangeul with the de-square frame, creating a playful and rhythmic movement. The name, Dongle(동글) comes from a Korean onomatopoeia, meaning 'rounded or curved shape(with adorable impression)’. 
-
-Dongle was originally designed as a 'Jamo(consonant and vowel in Hangeul) typing module' for the author's student project. Later it revised into ‘syllabic module’ to be released to the public. As the character size varies according to the syllable structure, Dongle typeface is much smaller compared to other square frame Korean typefaces. Therefore, it is better to adjust the font size visually to your liking, rather than relying on the point size of the editing program.
-
-It is designed especially for Hangeul typography, but it also includes Latin alphabet as a part of KS X 1001. This typeface has a light, regular, and bold weight.
-
-## Basic Information
-Dongle(동글) is a revised name of 'Dongle Hangeul(동글한글)' which was released in 2012.
-It consists of a full set of modern Hangeul syllables(11,172 characters), Google Latin plus set, and punctuations and symbols in KS X 1001. 
-
-- Dongle Hangeul Light, Medium, Bold were released in 2012.
-- Some of the Latin alphabets and symbols are revised for Ver.2.0 in 2020.
-- 'Medium' weight is renamed to 'Regular' in Ver.2.0  
+> It is designed especially for Hangeul typography, but it also includes Latin alphabet as a part of KS X 1001. This typeface has a light, regular, and bold weight.
 
 ## Designer
 Yanghee Ryu
