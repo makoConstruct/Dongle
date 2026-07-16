@@ -57,13 +57,19 @@ OUT_DIR = Path("fonts/ttf")
 
 NEW_FAMILY_NAME = "Dongle Latin"
 
-# Comfortable Latin line metrics (em = 1000).
-# Cap top sits at ~400, descenders bottom at ~-150.
-# ascender 900 leaves ~500 above caps (room for stacked diacritics + leading).
-# descender -300 leaves ~150 below descenders (typical Latin breathing room).
-# Total line = 1200 units = 1.2x em -> book-body leading.
-NEW_ASCENDER = 750   # tallest real glyph is Vietnamese Ắ at y=735 (Bold)
-NEW_DESCENDER = -300  # signed; winDescent will be stored as its absolute value
+# Comfortable Latin line metrics (em = 1000), centered on the ink.
+# Ascender letters (b, d, l) top out at y=435; descenders (p, g, y) reach
+# y=-145. 670/-380 keeps the 1050-unit line and puts 235 units of air on
+# each side of that ink, so text sits vertically centered in the line box.
+NEW_ASCENDER = 670    # typo/hhea only; win metrics are padded separately
+NEW_DESCENDER = -380  # signed; winDescent will be stored as its absolute value
+
+# Win metrics must cover the full glyph bounding box or some renderers clip:
+# tallest real glyph is Vietnamese Ắ at y=735 (Bold), deepest ink at y=-230.
+# "Use Typo Metrics" (fsSelection bit 7) makes renderers take line height
+# from the centered typo metrics instead of these padded values.
+WIN_ASCENT = 750
+WIN_DESCENT = 300
 
 # Drop glyphs whose Unicode falls in any of these ranges.
 DROP_RANGES = [
@@ -255,18 +261,24 @@ def strip_removed_refs(font, original_names, kept_names):
 # ---------------------------------------------------------------------------
 
 def update_metrics(font):
+    # Prefer the centered typo metrics over the padded win metrics
+    # (OS/2 fsSelection bit 7).
+    font.customParameters["Use Typo Metrics"] = True
+
     for m in font.masters:
         m.ascender = NEW_ASCENDER
         m.descender = NEW_DESCENDER
 
         # winDescent is stored as positive in the OS/2 table.
         params = {
-            "winAscent": NEW_ASCENDER,
-            "winDescent": abs(NEW_DESCENDER),
+            "typoAscender": NEW_ASCENDER,
+            "typoDescender": NEW_DESCENDER,
+            "typoLineGap": 0,
             "hheaAscender": NEW_ASCENDER,
             "hheaDescender": NEW_DESCENDER,
             "hheaLineGap": 0,
-            "typoLineGap": 0,
+            "winAscent": WIN_ASCENT,
+            "winDescent": WIN_DESCENT,
         }
         for name, value in params.items():
             m.customParameters[name] = value
